@@ -5,7 +5,6 @@ Fall 2020
 
  Updated: 11/13 @ 7:16 am
 
-Due Date - Monday, Dec. 7
 
 Data File - TBA
 
