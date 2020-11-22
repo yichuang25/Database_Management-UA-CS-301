@@ -1,0 +1,22 @@
+FIND
+M = 555
+C H ;
+FIND
+H = 20
+M = 555
+Z ;
+FIND
+Y
+Z ;
+FIND
+H = 67
+G > 7
+A M K S G ; 
+FIND
+Y
+A C ;
+FIND
+T
+U ;
+SORT
+M = -1 ;
