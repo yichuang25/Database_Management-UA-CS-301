@@ -155,15 +155,15 @@ for i in range(0,len(queries)):
             else: #not Z
                 project = query[len(query)-1]
                 if(query[1][0] == 'Y'): # if Y
-                    #if 'A' in project:
-                        #project.remove('A')
+                    if 'A' in project:
+                        project.remove('A')
                     for index in range(0,len(view)):
                         k = 0
                         #print("A: " + str(index), end = ' ')
                         dictionaty = data_dic.get(index)
                         for key in project:
                             if dictionaty.get(key) != None:
-                                if (k == 0) & ('A' in project):
+                                if k == 0:
                                     print("A: " + str(index), end = ' ')
                                     k = k+1
                                 print(key + ': ' + str(dictionaty.get(key)),end = ' ')
@@ -241,15 +241,16 @@ for i in range(0,len(queries)):
                                 break
                             id = list(set(id) & set(qualified))
                     #print(id)
+                    c = 0
                     for index in id:
                         #print("A: " + str(index), end = ' ')
-                        c = 0
+                        
                         dictionaty = data_dic.get(index)
                         for key in project:
                             if dictionaty.get(key) != None:
-                                if (c == 0) & ('A' in project):
+                                if c == 0:
                                     print("A: " + str(index), end = ' ')
-                                    c = c + 1
+                                    c = c+1
                                 print(key + ': ' + str(dictionaty.get(key)),end = ' ')
                         print()
             #print(query)
@@ -331,6 +332,7 @@ for i in range(0,len(queries)):
                             flag = 1
                         #print(view)
                     else:
+                        print("The field",index, "does not exist!")
                         flag = 1
                     
                     if flag == 0:
@@ -361,4 +363,3 @@ for i in range(0,len(queries)):
             print('Error')
         query.clear()
         count = count + 1
-    

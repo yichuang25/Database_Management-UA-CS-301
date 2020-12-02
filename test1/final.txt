@@ -1,0 +1,26 @@
+FIND
+Y > 20
+Y < 70
+Z ;
+SORT
+G = -1 ;
+SORT
+G = 1 ;
+FIND
+B > 10
+G > 10
+G < 150
+Y = 20
+Z ;
+FIND
+X = 66
+Y = 50
+D = 80
+G = 30
+U = 90
+B U X ;
+SORT
+Q = 1 ;
+FIND
+U = 90
+B G U X ;
