@@ -1,26 +1,21 @@
 FIND
-Y > 20
-Y < 70
-Z ;
-SORT
-G = -1 ;
-SORT
-G = 1 ;
-FIND
-B > 10
-G > 10
-G < 150
-Y = 20
+B = 550 
 Z ;
 FIND
-X = 66
-Y = 50
-D = 80
-G = 30
-U = 90
-B U X ;
-SORT
-Q = 1 ;
+B = 550
+A F H ;
+FND
+B = 55
+A ;
 FIND
-U = 90
-B G U X ;
+I > 91
+B < 500
+I B ;
+FIND
+Y
+K ;
+SORT
+J = -1 ;
+FIND
+B = 2
+Z ;

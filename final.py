@@ -1,9 +1,12 @@
+#CS-301-001
+#Yichen Huang
+#CWID:11906882
 import pandas as pd
 
 
 data = open("data.txt")
 data_dic = dict()
-print("Adding data\n")
+#print("Adding data\n")
 lines = data.readlines()
 for i in range(0,len(lines)):
     value = []
@@ -24,22 +27,8 @@ for i in range(0,len(lines)):
     data_dic[i] = collection
 database = pd.DataFrame(data_dic).T
 #print(database)
-#temp = database.iloc[0].copy()
-#
-#database.iloc[0] = database.iloc[1]
-#database.iloc[1] = temp
-#index = database.index
-#l = []
-#for i in index:
-#    l.append(i)
-#temp = l[0]
-#l[0] = l[1]
-#l[1] = temp
-#database.index = l
-
-
 #print(data_dic)
-print(database)
+#print(database)
 data.close()
 
 queries = open("final.txt")
@@ -53,14 +42,14 @@ for i in range(0,len(queries)):
     query.append(queries[i][:])
     #print(i,len(queries))
     if(queries[i][len(queries[i])-1]) == ';':
-        print("Query " + str(count))
+        print("Query " + str(count) + ': ',query)
         query[len(query)-1].remove(';')
-        print('Query: ',query)
+        #print('Query: ',query)
         view = database.copy(deep=True)
 
         if query[0][0] == 'FIND':
             if (len(query[len(query)-1]) == 1)&(query[len(query)-1][0] == 'Z'): #if Z
-                if (i==2)&(query[1][0] == 'Y'): #if Y
+                if (len(query) == 3)&(len(query[1]) == 1)&(query[1][0] == 'Y'): #if Y
                     for index in range(0,len(view)):
                         print("A: " + str(index), end = ' ')
                         dictionaty = data_dic.get(index)
@@ -79,7 +68,7 @@ for i in range(0,len(queries)):
                             index = query[sub][0]
                             comp = query[sub][1]
                             val = int(query[sub][2])
-                           
+
                             if index in view.columns:
                                 if comp == '=':
                                     for key in data_dic:
@@ -105,7 +94,7 @@ for i in range(0,len(queries)):
                                 else:
                                     id.clear()
                                     break
-                            else:
+                            else:                               
                                 id.clear()
                                 break
                             id = list(set(id) | set(qualified))
@@ -140,7 +129,7 @@ for i in range(0,len(queries)):
                                 else:
                                     id.clear()
                                     break
-                            else:
+                            else:                              
                                 id.clear()
                                 break
                             id = list(set(id) & set(qualified))
@@ -154,20 +143,34 @@ for i in range(0,len(queries)):
                         print()
             else: #not Z
                 project = query[len(query)-1]
-                if(query[1][0] == 'Y'): # if Y
-                    #if 'A' in project:
-                        #project.remove('A')
+                if (len(query) == 3)&(len(query[1]) == 1)&(query[1][0] == 'Y'): # if Y
+                    f = 0
+                    if 'A' in project:
+                        if len(project) == 1:
+                            f = 1
+                        else:
+                            f = 2
+                            project.remove('A')
+                    c = 0
                     for index in range(0,len(view)):
                         k = 0
+                        if f == 1:
+                            print("A: " + str(index), end = ' ')
+                            k = k - 1
+                        
                         #print("A: " + str(index), end = ' ')
                         dictionaty = data_dic.get(index)
                         for key in project:
                             if dictionaty.get(key) != None:
-                                if (k == 0) & ('A' in project):
+                                if (c == 0) & (f == 2):
                                     print("A: " + str(index), end = ' ')
-                                    k = k+1
+                                    c = c+1
                                 print(key + ': ' + str(dictionaty.get(key)),end = ' ')
-                        print()
+                            else:
+                                k = k + 1
+                            if k <= 0:
+                                print()
+                        c = 0
                 else:   #not Y
                     id = []
                     for sub in range(1,len(query)-1):
@@ -241,15 +244,26 @@ for i in range(0,len(queries)):
                                 break
                             id = list(set(id) & set(qualified))
                     #print(id)
+                    
+                    f = 0
+                    if 'A' in project:
+                        if len(project) == 1:
+                            f = 1
+                        else:
+                            f = 2
+                            project.remove('A')
                     for index in id:
-                        #print("A: " + str(index), end = ' ')
                         c = 0
+                        #print("A: " + str(index), end = ' ')
+                        if f==1:
+                            print("A: " + str(index), end = ' ')
                         dictionaty = data_dic.get(index)
                         for key in project:
                             if dictionaty.get(key) != None:
-                                if (c == 0) & ('A' in project):
+                                #print(c,f)
+                                if (c == 0) & (f==2):
                                     print("A: " + str(index), end = ' ')
-                                    c = c + 1
+                                    c = c+1
                                 print(key + ': ' + str(dictionaty.get(key)),end = ' ')
                         print()
             #print(query)
@@ -264,12 +278,12 @@ for i in range(0,len(queries)):
             ascend = int(query[1][2])
 
             if flag == 0:
-            
+                   
                 if index == 'A':
                     if ascend == 1:
-                        for index in range(0,len(view)):
-                            print("A: " + str(index), end = ' ')
-                            dictionaty = data_dic.get(index)
+                        for i in range(0,len(view)):
+                            print("A: " + str(i), end = ' ')
+                            dictionaty = data_dic.get(i)
                             for key in dictionaty:
                                 if dictionaty.get(key) != None:
                                     print(key + ': ' + str(dictionaty.get(key)),end = ' ')
@@ -277,9 +291,9 @@ for i in range(0,len(queries)):
                     elif ascend == -1:
                         lst = list(view.index)
                         lst.reverse()
-                        for index in lst:
-                            print("A: " + str(index), end = ' ')
-                            dictionaty = data_dic.get(index)
+                        for i in lst:
+                            print("A: " + str(i), end = ' ')
+                            dictionaty = data_dic.get(i)
                             for key in dictionaty:
                                 if dictionaty.get(key) != None:
                                     print(key + ': ' + str(dictionaty.get(key)),end = ' ')
@@ -287,16 +301,22 @@ for i in range(0,len(queries)):
                 else:
 
                     if index in view.columns:
+                        #print(index)
+                        #print(view)
+                        for i in range(0,len(view)):
+                            if pd.isnull(view[index][i]):
+                                view.drop([i],axis=0,inplace=True)
+                        #print(view)
                         if ascend == 1:
                             for i in range(0,len(view)):
                                 min_idx = i
                                 for j in range(i+1,len(view)):
-                                   
-                                    if view[index][min_idx] > view[index][j]:
+                                    
+                                    if view[index][view.index[min_idx]] > view[index][view.index[j]]:
                                         min_idx = j
-                                temp = view[index][i].copy()
-                                view[index][i] = view[index][min_idx]
-                                view[index][min_idx] = temp
+                                temp = view[index][view.index[i]].copy()
+                                view[index][view.index[i]] = view[index][view.index[min_idx]]
+                                view[index][view.index[min_idx]] = temp
                                 l = []
                                 d = view.index
                                 for e in d:
@@ -312,12 +332,12 @@ for i in range(0,len(queries)):
                             for i in range(0,len(view)):
                                 min_idx = i
                                 for j in range(i+1,len(view)):
-                                   
-                                    if view[index][min_idx] < view[index][j]:
+                                    
+                                    if view[index][view.index[min_idx]] < view[index][view.index[j]]:
                                         min_idx = j
-                                temp = view[index][i].copy()
-                                view[index][i] = view[index][min_idx]
-                                view[index][min_idx] = temp
+                                temp = view[index][view.index[i]].copy()
+                                view[index][view.index[i]] = view[index][view.index[min_idx]]
+                                view[index][view.index[min_idx]] = temp
                                 l = []
                                 d = view.index
                                 for e in d:
@@ -331,6 +351,7 @@ for i in range(0,len(queries)):
                             flag = 1
                         #print(view)
                     else:
+                        print("The field",index, "does not exist!")
                         flag = 1
                     
                     if flag == 0:
@@ -358,7 +379,6 @@ for i in range(0,len(queries)):
             #print(query)
             print()
         else:
-            print('Error')
+            print('Error\n')
         query.clear()
         count = count + 1
-    
