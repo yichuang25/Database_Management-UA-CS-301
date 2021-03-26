@@ -1,6 +1,5 @@
 #CS-301-001
 #Yichen Huang
-#CWID:11906882
 import pandas as pd
 
 
