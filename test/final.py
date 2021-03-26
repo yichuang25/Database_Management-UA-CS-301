@@ -170,6 +170,7 @@ for i in range(0,len(queries)):
                                 k = k + 1
                             if k <= 0:
                                 print()
+                            k = 0
                         c = 0
                 else:   #not Y
                     id = []
@@ -258,6 +259,7 @@ for i in range(0,len(queries)):
                         if f==1:
                             print("A: " + str(index), end = ' ')
                         dictionaty = data_dic.get(index)
+                        k = 0
                         for key in project:
                             if dictionaty.get(key) != None:
                                 #print(c,f)
@@ -265,7 +267,10 @@ for i in range(0,len(queries)):
                                     print("A: " + str(index), end = ' ')
                                     c = c+1
                                 print(key + ': ' + str(dictionaty.get(key)),end = ' ')
-                        print()
+                            else:
+                                k = k + 1
+                        if k <= 0:
+                            print()
             #print(query)
             print()
         elif query[0][0] == 'SORT':

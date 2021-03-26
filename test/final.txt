@@ -2,20 +2,44 @@ FIND
 B = 550 
 Z ;
 FIND
-B = 550
-A F H ;
-FND
-B = 55
-A ;
+H > 95
+Z ;
 FIND
-I > 91
-B < 500
-I B ;
+J < 650
+Z ;
+FIND
+J < 650
+J E I ;
+FIND
+H > 49
+T S ;
+SORTT
+J = 1 ;
 FIND
 Y
-K ;
-SORT
-J = -1 ;
+T S ;
 FIND
-B = 2
+Y
+X ;
+FIND
+Y
+X T ;
+FIND
+Q < 50
+T < 4
+S > 45
+Z ;
+FIND
+Q < 50
+T < 4
+V = 300
+S > 45
+Z ;
+SORT
+Q = 1 ;
+SORT
+Q = -1 ;
+FIND
+J < 800
+J > 500
 Z ;

@@ -1,22 +1,45 @@
 FIND
-M = 555
-C H ;
-FIND
-H = 20
-M = 555
+B = 550 
 Z ;
 FIND
-Y
+H > 95
 Z ;
 FIND
-H = 67
-G > 7
-A M K S G ; 
+J < 650
+Z ;
+FIND
+J < 650
+J E I ;
+FIND
+H > 49
+T S ;
+SORTT
+J = 1 ;
 FIND
 Y
-A C ;
+T S ;
 FIND
-T
-U ;
+Y
+X ;
+FIND
+Y
+X T ;
+FIND
+Q < 50
+T < 4
+S > 45
+Z ;
+FIND
+Q < 50
+T < 4
+V = 300
+S > 45
+Z ;
 SORT
-B = -1 ;
+Q = 1 ;
+SORT
+Q = -1 ;
+FIND
+J < 800
+J > 500
+Z ;
